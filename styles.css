@@ -9,8 +9,9 @@
   --ash: #978b7d;        /* secondary text */
   --lamp: #e2a63a;       /* the single accent: "now playing" */
 
-  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Crimson Pro", "Crimson Text", Georgia, serif;
+  /* Fonts In Use research: Futura on jazz sleeves and hi-fi (→ Jost), Cooper/Eiko in listening bars (→ Fraunces, soft) */
+  --sans: "Jost", "Futura", "Century Gothic", sans-serif;
+  --serif: "Fraunces", "Cooper BT", Georgia, serif;
 
   --gutter: clamp(16px, 2.2vw, 40px);
   --top-h: clamp(52px, 7vh, 72px);
@@ -34,6 +35,8 @@ body {
   font-family: var(--serif);
   font-size: clamp(15px, 1.05vw + 0.6vh, 19px);
   line-height: 1.45;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 60;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -51,12 +54,12 @@ img { display: block; max-width: 100%; }
 }
 .mark { display: inline-flex; align-items: baseline; gap: .55em; line-height: 1; }
 .mark-main {
-  font-weight: 700; font-stretch: 118%; font-size: clamp(17px, 1.3vw, 21px);
-  letter-spacing: -0.015em; text-transform: uppercase;
+  font-weight: 600; font-size: clamp(17px, 1.3vw, 21px);
+  letter-spacing: .08em; text-transform: uppercase;
 }
 .mark-sub {
-  font-weight: 400; font-stretch: 100%; font-size: clamp(11px, .8vw, 13px);
-  letter-spacing: .22em; text-transform: uppercase; color: var(--ash);
+  font-weight: 400; font-size: clamp(11px, .8vw, 13px);
+  letter-spacing: .3em; text-transform: uppercase; color: var(--ash);
 }
 .top-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 32px); }
 .nav-btn {
@@ -111,15 +114,16 @@ img { display: block; max-width: 100%; }
   transition: opacity .3s var(--ease);
 }
 .stage-kicker {
-  margin: 0; font-family: var(--sans); font-size: clamp(11px, .8vw, 13px); font-weight: 500;
+  margin: 0; font-family: var(--sans); font-size: clamp(11px, .8vw, 13px); font-weight: 500; letter-spacing: .04em;
   color: var(--lamp); display: inline-flex; align-items: center; gap: .6em;
 }
 .stage-kicker::before {
   content: ""; width: 1.6em; height: 1px; background: currentColor;
 }
 .stage-title {
-  margin: 0; font-family: var(--sans); font-weight: 700; font-stretch: 112%;
-  font-size: clamp(22px, 2.2vw + 1vh, 44px); line-height: 1.02; letter-spacing: -0.02em;
+  margin: 0; font-family: var(--serif); font-weight: 600;
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+  font-size: clamp(24px, 2.4vw + 1.1vh, 50px); line-height: 1; letter-spacing: -0.01em;
   text-wrap: balance; max-width: 14ch;
 }
 .stage-tagline {
@@ -135,8 +139,9 @@ img { display: block; max-width: 100%; }
 }
 .about[hidden] { display: none; }
 .about-title {
-  margin: 0 0 .2em; font-family: var(--sans); font-weight: 700; font-stretch: 112%;
-  font-size: clamp(20px, 1.8vw + .8vh, 36px); letter-spacing: -0.02em; line-height: 1;
+  margin: 0 0 .2em; font-family: var(--serif); font-weight: 600;
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+  font-size: clamp(22px, 1.9vw + .9vh, 40px); letter-spacing: -0.01em; line-height: 1;
 }
 .about p { margin: 0; max-width: 46ch; font-size: clamp(14px, .95vw + .35vh, 18px); line-height: 1.5; }
 .about-contact {
@@ -159,7 +164,7 @@ img { display: block; max-width: 100%; }
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: clamp(9px, 1.5vh, 16px) 0; text-align: left; min-height: 44px;
   font-family: var(--sans); font-weight: 500; font-size: clamp(15px, 1.05vw + .5vh, 23px);
-  letter-spacing: -0.01em; color: var(--ash);
+  letter-spacing: 0; color: var(--ash);
   transition: color .25s var(--ease), padding-left .35s var(--ease);
 }
 .track-btn:hover { color: var(--linen); }
