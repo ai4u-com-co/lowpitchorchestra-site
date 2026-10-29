@@ -3,14 +3,15 @@
 Rediseño de https://lowpitchorchestra.com/ bajo un concepto: todo el sitio cabe y se usa en
 la pantalla visible, sin scroll vertical, como una app de tablet.
 
-Referente del cliente: https://publicrecords.nyc/ (campo infinito que deriva, declaración fija en
-`mix-blend-mode: difference`, acordeón vertical a la derecha). Paleta y tipografía propias de LPO.
+Referente del cliente: https://publicrecords.nyc/, remezclado: un **friso horizontal** de fotos y
+clientes que deriva de lado (nunca en vertical), marca y declaración arriba a la izquierda en
+`mix-blend-mode: difference`, una **consola** al pie (Now playing · Services / Clients / Contact ·
+EN/ES · Dark/Light) y paneles que suben como bandeja. Paleta y tipografía propias de LPO.
 
-- `index.html` — campo (3 capas), marca, declaración, acordeón Services / Clients / Contact, cursor.
-- `styles.css` — tokens en `:root`, campo y capas, declaración, acordeón (vertical en escritorio,
-  apilado arriba en móvil), cursor, reduced motion.
-- `app.js` — obras y su posición en el mosaico, deriva + puntero + arrastre + rueda, acordeón,
-  filas de servicios/clientes, declaración expandible.
+- `index.html` — friso (3 capas), marca + declaración, conmutadores, bandeja con 3 paneles, consola, cursor.
+- `styles.css` — tokens oscuro/claro en `:root` y `[data-theme="light"]`, friso, consola, bandeja, móvil.
+- `app.js` — textos EN/ES (`I18N`), tema y idioma persistidos en localStorage, obras del friso
+  (escaladas a la altura libre para que siempre quepan), deriva/puntero/arrastre/rueda en X, bandeja.
 - Concepto anterior (escenario + tracklist) en el tag `v1-tracklist`.
 - `assets/` — fotos del sitio actual reducidas para web.
 
