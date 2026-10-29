@@ -54,14 +54,22 @@ img { display: block; max-width: 100%; }
 .field { position: absolute; left: 0; right: 0; top: 0; bottom: var(--console); overflow: hidden; z-index: 1; user-select: none; touch-action: pan-y; }
 .layer { position: absolute; left: 0; top: 0; width: 100%; height: 100%; will-change: transform; }
 .tile { position: absolute; left: 0; top: 0; height: 100%; }
-.work { position: absolute; pointer-events: all; display: block; }
+.work {
+  position: absolute; pointer-events: all; display: block;
+  /* each work breathes on its own slow cycle (set per work in JS); the tray makes them step back */
+  animation: breathe var(--breathe, 9s) ease-in-out var(--breathe-delay, 0s) infinite alternate;
+  transition: transform .7s var(--ease), opacity .6s var(--ease);
+}
 .work img { width: 100%; height: auto; display: block; transition: transform .6s var(--ease), opacity .6s var(--ease); }
-.work.is-lit img { transform: scale(1.04); }
+.work.is-lit img { transform: scale(1.06); }
+@keyframes breathe { from { translate: 0 calc(var(--amp, 8px) * -1); } to { translate: 0 var(--amp, 8px); } }
+body.tray-open .work { opacity: .55; animation-play-state: paused; }
+body.tray-open .work img { transform: scale(.94); }
+body.tray-open .work.is-lit { opacity: 1; }
+body.tray-open .work.is-lit img { transform: scale(1); }
 /* the studio's own sleeve: the logo on a tile, drawn through a mask so it follows the theme */
 .work.logo-tile { background: var(--panel-bg); border: 1px solid var(--line); display: grid; place-items: center; transition: background .3s var(--ease); }
 .work.logo-tile span { display: block; width: 72%; aspect-ratio: 3270 / 1030; background: var(--ink); -webkit-mask: url(assets/brand/lpo-logo-redrawn-white.png) center / contain no-repeat; mask: url(assets/brand/lpo-logo-redrawn-white.png) center / contain no-repeat; }
-body.tray-open .work img { opacity: .5; }
-body.tray-open .work.is-lit img { opacity: 1; }
 
 /* ---------- masthead: brand + statement ---------- */
 .masthead {
@@ -180,7 +188,7 @@ body.tray-open .work.is-lit img { opacity: 1; }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .work img, .tray, .row-text, .statement-rest, .cursor, body, .console { transition: none !important; }
+  .work, .work img, .tray, .row-text, .statement-rest, .cursor, body, .console { transition: none !important; animation: none !important; }
 }
 
 /* ---------- phone / narrow (<768) ---------- */

@@ -124,12 +124,12 @@
     FH = h;
     TW = phone() ? Math.max(2000, w * 4.6) : Math.max(3200, w * 2.3);
     // the unit is a share of the free height, so the whole scale fits above the console on any screen
-    const unit = h * (phone() ? 0.13 : 0.18);
+    const unit = h * (phone() ? 0.10 : 0.125);
     const out = {}; for (const k in SCALE) out[k] = Math.round(unit * SCALE[k]); return out;   // heights, px
   }
   function build() {
     const heights = metrics();
-    const pad = 12;
+    const pad = 24;   // room for the breathing and the tilt
     layers.forEach((layer, li) => {
       layer.textContent = '';
       for (let dx = -1; dx <= 1; dx++) {
@@ -144,6 +144,10 @@
           if (w.kind !== 'photo') a.href = '#' + (w.kind === 'client' ? 'clients' : w.kind === 'service' ? 'services' : 'contact');
           a.setAttribute('aria-label', captionOf(w));
           a.style.width = width + 'px'; a.style.height = Math.round(height) + 'px';
+          const seed = WORKS.indexOf(w);
+          a.style.setProperty('--breathe', (7 + (seed % 5) * 1.3).toFixed(1) + 's');
+          a.style.setProperty('--breathe-delay', (-(seed * 1.7) % 9).toFixed(1) + 's');
+          a.style.setProperty('--amp', (5 + (seed % 4) * 3) + 'px');
           a.style.left = Math.round(w.x * TW) + 'px';
           a.style.top = Math.round(Math.max(pad, Math.min(w.y * FH, FH - height - pad))) + 'px';
           if (w.logo) { a.appendChild(document.createElement('span')); }
@@ -167,16 +171,17 @@
 
   /* ---------- motion: horizontal only. A slow drift, steered by the pointer, dragged by touch ---------- */
   let x = 0;
-  const BASE = -0.3;
+  const BASE = -0.55;
   let vel = BASE, target = BASE;
+  let tiltTarget = 0, tilt = 0;   // vertical tilt of the layers, a few px by depth, steered by the pointer
   let slow = false, paused = false, pointerIn = false, dragging = false, dragged = false;
-  const EASE = 0.09, MAX = 1.2;
+  const EASE = 0.09, MAX = 2.2, TILT = 28;
   const mod = (n, m) => ((n % m) + m) % m;
 
   function render() {
     layers.forEach(layer => {
       const d = parseFloat(layer.dataset.depth);
-      layer.style.transform = `translate3d(${mod(x * d, TW) - TW}px, 0, 0)`;
+      layer.style.transform = `translate3d(${mod(x * d, TW) - TW}px, ${(tilt * (d - 1)).toFixed(2)}px, 0)`;
     });
   }
   function tick() {
@@ -186,6 +191,7 @@
       vel += (want * k - vel) * EASE;
       x += vel;
     }
+    tilt += (tiltTarget - tilt) * 0.06;
     render();
     requestAnimationFrame(tick);
   }
@@ -194,11 +200,12 @@
     cursor.style.translate = `${e.clientX}px ${e.clientY}px`;
     cursor.classList.add('is-on');
     if (reduce || phone()) return;
-    const cx = window.innerWidth / 2;
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
     pointerIn = !e.target.closest('.tray, .console, .switches');   // the chrome does not steer the frieze
     target = -((e.clientX - cx) / cx) * MAX;
+    tiltTarget = pointerIn ? -((e.clientY - cy) / cy) * TILT : 0;
   });
-  document.addEventListener('mouseleave', () => { pointerIn = false; cursor.classList.remove('is-on'); });
+  document.addEventListener('mouseleave', () => { pointerIn = false; tiltTarget = 0; cursor.classList.remove('is-on'); });
   document.addEventListener('mouseover', e => cursor.classList.toggle('is-big', !!e.target.closest('a, button')));
 
   let start = null;
