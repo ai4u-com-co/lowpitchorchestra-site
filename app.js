@@ -93,7 +93,7 @@
   }
 
   window.addEventListener('mousemove', e => {
-    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)` + (cursor.classList.contains('is-big') ? ' scale(2.6)' : '');
+    cursor.style.translate = `${e.clientX}px ${e.clientY}px`;
     cursor.classList.add('is-on');
     if (reduce || phone()) return;
     const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
