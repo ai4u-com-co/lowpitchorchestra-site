@@ -82,24 +82,39 @@
   document.querySelectorAll('#switch-theme button').forEach(b => b.addEventListener('click', () => { store.set('lpo-theme', b.dataset.theme); applyTheme(b.dataset.theme); }));
   applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
-  /* ---------- the works: a horizontal frieze. x is a fraction of the band, y a fraction of the free height ---------- */
-  // ar = width / height, so every work can be placed inside the screen height
+  /* ---------- the works on the frieze. Heights follow a golden-ratio scale (φ = 1.618):
+     xl : l : m : s : xs  =  φ³ : φ² : φ : 1 : 1/φ  — big photographs, small marks, nothing in between by accident. ---------- */
+  const PHI = 1.618;
+  const SCALE = { xl: Math.pow(PHI, 3), l: Math.pow(PHI, 2), m: PHI, s: 1, xs: 1 / PHI };
+  // ar = width / height; x is a fraction of the band, y a fraction of the free height
   const WORKS = [
-    { id: 'playlists', kind: 'service', src: 'assets/w-playlists.jpg', ar: 1.33, size: 'big',    layer: 0, x: .03, y: .10, caption: 's.playlists' },
-    { id: 'luxe',      kind: 'client',  src: 'assets/c-luxe.jpg',      ar: 1,    size: 'small',  layer: 0, x: .40, y: .08, caption: 'Luxe Hotel' },
-    { id: 'station',   kind: 'client',  src: 'assets/c-station.jpg',   ar: .75,  size: 'medium', layer: 0, x: .62, y: .55, caption: 'Station Restaurant' },
-    { id: 'about',     kind: 'about',   src: 'assets/w-about.jpg',     ar: .75,  size: 'medium', layer: 0, x: .84, y: .12, caption: 'about' },
-    { id: 'sonic',     kind: 'service', src: 'assets/w-sonic.jpg',     ar: .75,  size: 'big',    layer: 1, x: .30, y: .20, caption: 's.sonic' },
-    { id: 'one-half',  kind: 'client',  src: 'assets/c-one-half.jpg',  ar: 1,    size: 'medium', layer: 1, x: .08, y: .70, caption: 'One Half' },
-    { id: 'devocion',  kind: 'client',  src: 'assets/c-devocion.jpg',  ar: 1,    size: 'medium', layer: 1, x: .70, y: .06, caption: 'Devoción' },
-    { id: 'cafe-dragon', kind: 'client', src: 'assets/c-cafe-dragon.jpg', ar: 1, size: 'small',  layer: 1, x: .52, y: .78, caption: 'Café Dragón' },
-    { id: 'events',    kind: 'service', src: 'assets/w-events.jpg',    ar: .667, size: 'medium', layer: 1, x: .90, y: .50, caption: 's.events' },
-    { id: 'consult',   kind: 'service', src: 'assets/w-consult.jpg',   ar: .75,  size: 'big',    layer: 2, x: .16, y: .30, caption: 's.consult' },
-    { id: 'torrealta', kind: 'client',  src: 'assets/c-torrealta.jpg', ar: 1,    size: 'small',  layer: 2, x: .46, y: .40, caption: 'Torrealta' },
-    { id: 'la-rufina', kind: 'client',  src: 'assets/c-la-rufina.jpg', ar: 1.71, size: 'medium', layer: 2, x: .58, y: .18, caption: 'La Rufina' },
-    { id: 'casa-ramal', kind: 'client', src: 'assets/c-casa-ramal.jpg', ar: 1,   size: 'small',  layer: 2, x: .80, y: .76, caption: 'Casa Ramal' },
-    { id: 'supervision', kind: 'service', src: 'assets/w-supervision.jpg', ar: .75, size: 'medium', layer: 2, x: .72, y: .34, caption: 's.supervision' },
-    { id: 'sambombi',  kind: 'client',  src: 'assets/c-sambombi.jpg',  ar: .73,  size: 'small',  layer: 2, x: .34, y: .72, caption: 'Sambombi Bistro' },
+    // far layer
+    { id: 'playlists', kind: 'service', src: 'assets/w-playlists.jpg', ar: 1.33, size: 'l',  layer: 0, x: .02, y: .04, caption: 's.playlists' },
+    { id: 'luxe',      kind: 'client',  src: 'assets/c-luxe.jpg',      ar: 1,    size: 's',  layer: 0, x: .21, y: .74, caption: 'Luxe Hotel' },
+    { id: 'tokyo',     kind: 'photo',   src: 'assets/ig-tokyo.jpg',    ar: .8,   size: 'm',  layer: 0, x: .30, y: .06, caption: 'Tokyo Music Bar, Mexico City' },
+    { id: 'station',   kind: 'client',  src: 'assets/c-station.jpg',   ar: .75,  size: 'm',  layer: 0, x: .46, y: .62, caption: 'Station Restaurant' },
+    { id: 'crowd',     kind: 'photo',   src: 'assets/ig-crowd.jpg',    ar: 1,    size: 'xs', layer: 0, x: .58, y: .10, caption: 'Click Clack Hotel, Bogotá' },
+    { id: 'about',     kind: 'about',   logo: true,                    ar: 1.55, size: 'm',  layer: 0, x: .66, y: .70, caption: 'about' },
+    { id: 'devocion',  kind: 'client',  src: 'assets/c-devocion.jpg',  ar: 1,    size: 'm',  layer: 0, x: .80, y: .06, caption: 'Devoción' },
+    { id: 'paradisco', kind: 'photo',   src: 'assets/ig-paradisco.jpg', ar: .8,  size: 's',  layer: 0, x: .93, y: .66, caption: 'Paradisco, bar de escucha' },
+    // middle layer
+    { id: 'sonic',     kind: 'service', src: 'assets/w-sonic.jpg',     ar: .75,  size: 'xl', layer: 1, x: .10, y: .12, caption: 's.sonic' },
+    { id: 'one-half',  kind: 'client',  src: 'assets/c-one-half.jpg',  ar: 1,    size: 'l',  layer: 1, x: .36, y: .42, caption: 'One Half' },
+    { id: 'atmosphere', kind: 'photo',  src: 'assets/ig-atmosphere.jpg', ar: 1,  size: 'l',  layer: 1, x: .52, y: .08, caption: 'Atmosphere, Medellín' },
+    { id: 'cafe-dragon', kind: 'client', src: 'assets/c-cafe-dragon.jpg', ar: 1, size: 'm',  layer: 1, x: .70, y: .64, caption: 'Café Dragón' },
+    { id: 'events',    kind: 'service', src: 'assets/w-events.jpg',    ar: .667, size: 'l',  layer: 1, x: .85, y: .18, caption: 's.events' },
+    { id: 'carnaval',  kind: 'photo',   src: 'assets/ig-carnaval.jpg', ar: .8,   size: 'm',  layer: 1, x: .96, y: .60, caption: 'Carnaval de Barranquilla' },
+    // near layer
+    { id: 'consult',   kind: 'service', src: 'assets/w-consult.jpg',   ar: .75,  size: 'xl', layer: 2, x: .26, y: .02, caption: 's.consult' },
+    { id: 'torrealta', kind: 'client',  src: 'assets/c-torrealta.jpg', ar: 1,    size: 'm',  layer: 2, x: .47, y: .28, caption: 'Torrealta' },
+    { id: 'boavista',  kind: 'photo',   src: 'assets/ig-boavista.jpg', ar: .8,   size: 'xl', layer: 2, x: .60, y: .14, caption: 'Boavista Social Club, Lisbon' },
+    { id: 'la-rufina', kind: 'client',  src: 'assets/c-la-rufina.jpg', ar: 1.71, size: 'm',  layer: 2, x: .77, y: .80, caption: 'La Rufina' },
+    { id: 'casa-ramal', kind: 'client', src: 'assets/c-casa-ramal.jpg', ar: 1,   size: 's',  layer: 2, x: .05, y: .76, caption: 'Casa Ramal' },
+    { id: 'super-rayo', kind: 'photo',  src: 'assets/ig-super-rayo.jpg', ar: .8, size: 'l',  layer: 2, x: .88, y: .40, caption: 'Super Rayo' },
+    { id: 'supervision', kind: 'service', src: 'assets/w-supervision.jpg', ar: .75, size: 'm', layer: 2, x: .16, y: .46, caption: 's.supervision' },
+    { id: 'bambino',   kind: 'photo',   src: 'assets/ig-bambino.jpg',  ar: .8,   size: 'm',  layer: 2, x: .40, y: .70, caption: 'Bambino, Paris' },
+    { id: 'clickclack', kind: 'photo',  src: 'assets/ig-clickclack.jpg', ar: 1,  size: 's',  layer: 2, x: .72, y: .36, caption: 'Click Clack Hotel' },
+    { id: 'sambombi',  kind: 'client',  src: 'assets/c-sambombi.jpg',  ar: .73,  size: 'xs', layer: 2, x: .33, y: .86, caption: 'Sambombi Bistro' },
   ];
   const captionOf = w => (I18N.en[w.caption] ? t(w.caption) : w.caption);
 
@@ -107,13 +122,13 @@
   function metrics() {
     const w = window.innerWidth, h = field.clientHeight;
     FH = h;
-    TW = phone() ? Math.max(1400, w * 3.2) : Math.max(2400, w * 1.7);
-    // widths scale with the free height, so every work fits above the console on any screen
-    const s = Math.max(0.42, Math.min(1.1, h / 820)) * (phone() ? 0.62 : 1);
-    return { small: Math.round(150 * s), medium: Math.round(250 * s), big: Math.round(400 * s) };
+    TW = phone() ? Math.max(2000, w * 4.6) : Math.max(3200, w * 2.3);
+    // the unit is a share of the free height, so the whole scale fits above the console on any screen
+    const unit = h * (phone() ? 0.13 : 0.18);
+    const out = {}; for (const k in SCALE) out[k] = Math.round(unit * SCALE[k]); return out;   // heights, px
   }
   function build() {
-    const sizes = metrics();
+    const heights = metrics();
     const pad = 12;
     layers.forEach((layer, li) => {
       layer.textContent = '';
@@ -122,18 +137,22 @@
         tile.className = 'tile';
         tile.style.transform = `translate(${dx * TW}px, 0)`;
         WORKS.filter(w => w.layer === li).forEach(w => {
-          const width = sizes[w.size], height = width / w.ar;
-          const a = document.createElement('a');
-          a.className = 'work';
+          const height = Math.min(heights[w.size], FH - 2 * pad), width = Math.round(height * w.ar);
+          const a = document.createElement(w.kind === 'photo' ? 'div' : 'a');
+          a.className = 'work' + (w.logo ? ' logo-tile' : '') + (w.kind === 'photo' ? ' photo' : '');
           a.dataset.id = w.id;
-          a.href = '#' + (w.kind === 'client' ? 'clients' : w.kind === 'service' ? 'services' : 'contact');
+          if (w.kind !== 'photo') a.href = '#' + (w.kind === 'client' ? 'clients' : w.kind === 'service' ? 'services' : 'contact');
           a.setAttribute('aria-label', captionOf(w));
-          a.style.width = width + 'px';
+          a.style.width = width + 'px'; a.style.height = Math.round(height) + 'px';
           a.style.left = Math.round(w.x * TW) + 'px';
           a.style.top = Math.round(Math.max(pad, Math.min(w.y * FH, FH - height - pad))) + 'px';
-          const img = document.createElement('img');
-          img.src = w.src; img.alt = ''; img.draggable = false; img.decoding = 'async';
-          a.appendChild(img);
+          if (w.logo) { a.appendChild(document.createElement('span')); }
+          else {
+            const img = document.createElement('img');
+            img.src = w.src; img.alt = ''; img.draggable = false; img.decoding = 'async';
+            img.style.height = '100%'; img.style.objectFit = 'cover';
+            a.appendChild(img);
+          }
           a.addEventListener('click', e => { e.preventDefault(); if (dragged) return; openFor(w); });
           a.addEventListener('mouseenter', () => { slow = true; lit(w.id, true); setNowPlaying(captionOf(w)); });
           a.addEventListener('mouseleave', () => { slow = false; lit(w.id, false); setNowPlaying(null); });
@@ -239,7 +258,7 @@
       r.querySelector('.row-btn').setAttribute('aria-expanded', String(on));
     });
   }
-  const clientRows = [...document.querySelectorAll('#client-rows .row')];
+  const clientRows = [...document.querySelectorAll('#client-rows .sleeve')];
   clientRows.forEach(r => {
     r.addEventListener('mouseenter', () => { lit(r.dataset.id, true); setNowPlaying(r.querySelector('span').textContent); });
     r.addEventListener('mouseleave', () => { lit(r.dataset.id, false); setNowPlaying(null); });
@@ -248,7 +267,7 @@
   function openFor(w) {
     if (w.kind === 'service') { openPanel('services'); setRow(w.id, true); }
     else if (w.kind === 'client') { openPanel('clients'); clientRows.forEach(c => c.classList.toggle('is-current', c.dataset.id === w.id)); }
-    else { openPanel('contact'); }
+    else if (w.kind === 'about') { openPanel('contact'); }
   }
 
   /* ---------- statement ---------- */
