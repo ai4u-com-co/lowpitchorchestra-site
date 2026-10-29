@@ -17,116 +17,98 @@
 </head>
 <body>
 
-<header class="top">
-  <a class="mark" href="#" aria-label="Low Pitch Orchestra, home">
-    <span class="mark-main">Low Pitch</span><span class="mark-sub">Orchestra</span>
-  </a>
-  <nav class="top-nav" aria-label="Primary">
-    <button type="button" class="nav-btn" data-view="about" aria-pressed="false">About</button>
-    <a class="nav-btn" href="https://www.instagram.com/lposound" target="_blank" rel="noopener">Instagram</a>
-    <a class="nav-btn nav-contact" href="mailto:carlos@lowpitchorchestra.com">Get in touch</a>
-  </nav>
-</header>
+<!-- The field: an endless surface of photographs and client sleeves, drifting. -->
+<div class="field" id="field" aria-label="Photographs and clients of Low Pitch Orchestra">
+  <div class="layer" data-depth="0.55"></div>
+  <div class="layer" data-depth="1"></div>
+  <div class="layer" data-depth="1.4"></div>
+</div>
 
-<main class="deck" data-panel="services">
+<a class="brand" href="#" aria-label="Low Pitch Orchestra, home">Low Pitch Orchestra</a>
 
-  <!-- Stage: the one thing that moves -->
-  <section class="stage" aria-live="polite">
-    <div class="stage-media">
-      <img class="stage-img is-on" src="assets/stage-sonic.jpg" alt="" width="768" height="1024" fetchpriority="high">
-      <img class="stage-img" src="" alt="" aria-hidden="true">
-    </div>
-    <div class="stage-copy">
-      <p class="stage-kicker" id="stage-kicker">Now playing</p>
-      <h1 class="stage-title" id="stage-title">Sonic Branding &amp; Identity</h1>
-      <p class="stage-tagline">Curated sound. Elevated atmosphere.</p>
-      <p class="stage-desc" id="stage-desc"></p>
-    </div>
-
-    <div class="about" id="about" hidden>
-      <h2 class="about-title">About</h2>
-      <p>At Low Pitch Orchestra, we believe music is more than background: it’s identity, emotion, and experience. With a reputation for refined taste and creative precision, we specialize in bespoke music curation for brands, spaces, and moments that demand distinction.</p>
+<!-- Statement, bottom left, inverted over whatever drifts beneath it -->
+<aside class="statement" id="statement">
+  <div class="statement-scroll">
+    <p class="statement-lead">
+      <strong>LOW PITCH ORCHESTRA</strong> believes music is more than background: it’s identity, emotion, and experience. With a reputation for refined taste and creative precision, we specialize in bespoke music curation for brands, spaces, and moments that demand distinction<button type="button" class="statement-more" id="statement-more" aria-expanded="false" aria-controls="statement-rest"><span class="when-closed">&hellip;</span><span class="when-open">.</span></button>
+    </p>
+    <div class="statement-rest" id="statement-rest"><div class="statement-rest-inner">
       <p>Our work has earned the trust of leading names across fashion, design, hospitality, and media, bringing together culture, nuance, and sound in perfect harmony.</p>
-      <dl class="about-contact">
-        <div><dt>Email</dt><dd><a href="mailto:carlos@lowpitchorchestra.com">carlos@lowpitchorchestra.com</a></dd></div>
-        <div><dt>Phone</dt><dd><a href="tel:+573183138797">+57 318 313 8797</a></dd></div>
-        <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/lposound" target="_blank" rel="noopener">@lposound</a></dd></div>
-      </dl>
+      <p>Sonic branding and identity, curated playlists for spaces and brands, music direction for events, music supervision for film, fashion and content, and sound strategy.</p>
+      <div class="statement-info">
+        <p>For inquiries:<br><a href="mailto:carlos@lowpitchorchestra.com">carlos@lowpitchorchestra.com</a></p>
+        <p>Phone and WhatsApp:<br><a href="tel:+573183138797">+57 318 313 8797</a></p>
+        <p>Instagram:<br><a href="https://www.instagram.com/lposound" target="_blank" rel="noopener">@lposound</a></p>
+      </div>
+    </div></div>
+  </div>
+</aside>
+
+<!-- Drawer: three vertical tabs on the right edge -->
+<nav class="drawer" id="drawer" aria-label="Sections">
+
+  <section class="drawer-item" data-panel="services" style="--i:0">
+    <button type="button" class="drawer-trigger" aria-expanded="false">Services</button>
+    <div class="drawer-panel">
+      <ol class="rows" id="service-rows">
+        <li class="row" data-id="sonic">
+          <button type="button" class="row-btn" aria-expanded="false"><span>Sonic Branding &amp; Identity</span></button>
+          <p class="row-text">We collaborate with forward-thinking brands to craft a unique and lasting audio signature. From subtle ambient moods to bold musical statements, our sonic branding is tailored to express your essence across all touchpoints: physical, digital, and experiential.</p>
+        </li>
+        <li class="row" data-id="consult">
+          <button type="button" class="row-btn" aria-expanded="false"><span>Creative Consultation &amp; Sound Strategy</span></button>
+          <p class="row-text">Need a fresh perspective on your brand’s musical voice? We offer sound strategy sessions and ongoing consultation to guide internal teams or provide external expertise. From one-off audits to long-term collaboration, we help refine your auditory presence.</p>
+        </li>
+        <li class="row" data-id="playlists">
+          <button type="button" class="row-btn" aria-expanded="false"><span>Curated Playlists for Spaces &amp; Brands</span></button>
+          <p class="row-text">Custom playlists designed to enhance atmosphere and support brand storytelling. Whether it’s a concept store in Paris, a gallery opening in Berlin, or a luxury retreat in the Mediterranean, we curate music that speaks your language and elevates every moment.</p>
+        </li>
+        <li class="row" data-id="events">
+          <button type="button" class="row-btn" aria-expanded="false"><span>Music Direction for Events</span></button>
+          <p class="row-text">From runway shows and product launches to private gatherings and exhibitions, Low Pitch Orchestra provides full-spectrum music direction. Every track is selected with intention, shaping the emotional arc of the event and creating an immersive, memorable experience.</p>
+        </li>
+        <li class="row" data-id="supervision">
+          <button type="button" class="row-btn" aria-expanded="false"><span>Music Supervision for Film, Fashion &amp; Content</span></button>
+          <p class="row-text">We source and license music for campaigns, short films, and branded content, balancing mood, narrative, and originality. Our supervision ensures seamless integration and emotional resonance, working hand-in-hand with directors, editors, and producers.</p>
+        </li>
+      </ol>
+      <p class="panel-foot"><a href="mailto:carlos@lowpitchorchestra.com">Start a conversation</a></p>
     </div>
   </section>
 
-  <!-- Side A: services as a tracklist -->
-  <section class="side side-a" aria-labelledby="services-h">
-    <h2 class="side-h" id="services-h">Services</h2>
-    <ol class="tracks" id="tracks">
-      <li class="track is-current">
-        <button type="button" class="track-btn" aria-expanded="true" data-img="assets/stage-sonic.jpg">
-          <span class="track-name">Sonic Branding &amp; Identity</span>
-          <span class="track-mark" aria-hidden="true"></span>
-        </button>
-        <p class="track-desc">We collaborate with forward-thinking brands to craft a unique and lasting audio signature. From subtle ambient moods to bold musical statements, our sonic branding is tailored to express your essence across all touchpoints: physical, digital, and experiential.</p>
-      </li>
-      <li class="track">
-        <button type="button" class="track-btn" aria-expanded="false" data-img="assets/stage-consult.jpg">
-          <span class="track-name">Creative Consultation &amp; Sound Strategy</span>
-          <span class="track-mark" aria-hidden="true"></span>
-        </button>
-        <p class="track-desc">Need a fresh perspective on your brand’s musical voice? We offer sound strategy sessions and ongoing consultation to guide internal teams or provide external expertise. From one-off audits to long-term collaboration, we help refine your auditory presence.</p>
-      </li>
-      <li class="track">
-        <button type="button" class="track-btn" aria-expanded="false" data-img="assets/stage-playlists.jpg">
-          <span class="track-name">Curated Playlists for Spaces &amp; Brands</span>
-          <span class="track-mark" aria-hidden="true"></span>
-        </button>
-        <p class="track-desc">Custom playlists designed to enhance atmosphere and support brand storytelling. Whether it’s a concept store in Paris, a gallery opening in Berlin, or a luxury retreat in the Mediterranean, we curate music that speaks your language and elevates every moment.</p>
-      </li>
-      <li class="track">
-        <button type="button" class="track-btn" aria-expanded="false" data-img="assets/stage-events.jpg">
-          <span class="track-name">Music Direction for Events</span>
-          <span class="track-mark" aria-hidden="true"></span>
-        </button>
-        <p class="track-desc">From runway shows and product launches to private gatherings and exhibitions, Low Pitch Orchestra provides full-spectrum music direction. Every track is selected with intention, shaping the emotional arc of the event and creating an immersive, memorable experience.</p>
-      </li>
-      <li class="track">
-        <button type="button" class="track-btn" aria-expanded="false" data-img="assets/stage-supervision.jpg">
-          <span class="track-name">Music Supervision for Film, Fashion &amp; Content</span>
-          <span class="track-mark" aria-hidden="true"></span>
-        </button>
-        <p class="track-desc">We source and license music for campaigns, short films, and branded content, balancing mood, narrative, and originality. Our supervision ensures seamless integration and emotional resonance, working hand-in-hand with directors, editors, and producers.</p>
-      </li>
-    </ol>
+  <section class="drawer-item" data-panel="clients" style="--i:1">
+    <button type="button" class="drawer-trigger" aria-expanded="false">Clients</button>
+    <div class="drawer-panel">
+      <ul class="rows rows-clients" id="client-rows">
+        <li class="row" data-id="one-half"><img src="assets/c-one-half.jpg" alt=""><span>One Half</span></li>
+        <li class="row" data-id="devocion"><img src="assets/c-devocion.jpg" alt=""><span>Devoción</span></li>
+        <li class="row" data-id="casa-ramal"><img src="assets/c-casa-ramal.jpg" alt=""><span>Casa Ramal</span></li>
+        <li class="row" data-id="cafe-dragon"><img src="assets/c-cafe-dragon.jpg" alt=""><span>Café Dragón</span></li>
+        <li class="row" data-id="luxe"><img src="assets/c-luxe.jpg" alt=""><span>Luxe Hotel</span></li>
+        <li class="row" data-id="torrealta"><img src="assets/c-torrealta.jpg" alt=""><span>Torrealta</span></li>
+        <li class="row" data-id="station"><img src="assets/c-station.jpg" alt=""><span>Station Restaurant</span></li>
+        <li class="row" data-id="la-rufina"><img src="assets/c-la-rufina.jpg" alt=""><span>La Rufina</span></li>
+        <li class="row" data-id="sambombi"><img src="assets/c-sambombi.jpg" alt=""><span>Sambombi Bistro</span></li>
+      </ul>
+      <p class="panel-foot">Fashion, design, hospitality and media.</p>
+    </div>
   </section>
 
-  <!-- Side B: clients as record sleeves -->
-  <section class="side side-b" aria-labelledby="clients-h">
-    <h2 class="side-h" id="clients-h">Clients</h2>
-    <ul class="sleeves" id="sleeves">
-      <li><figure><img src="assets/c-one-half.jpg" alt="" loading="lazy"><figcaption>One Half</figcaption></figure></li>
-      <li><figure><img src="assets/c-devocion.jpg" alt="" loading="lazy"><figcaption>Devoción</figcaption></figure></li>
-      <li><figure><img src="assets/c-casa-ramal.jpg" alt="" loading="lazy"><figcaption>Casa Ramal</figcaption></figure></li>
-      <li><figure><img src="assets/c-cafe-dragon.jpg" alt="" loading="lazy"><figcaption>Café Dragón</figcaption></figure></li>
-      <li><figure><img src="assets/c-luxe.jpg" alt="" loading="lazy"><figcaption>Luxe Hotel</figcaption></figure></li>
-      <li><figure><img src="assets/c-torrealta.jpg" alt="" loading="lazy"><figcaption>Torrealta</figcaption></figure></li>
-      <li><figure><img src="assets/c-station.jpg" alt="" loading="lazy"><figcaption>Station Restaurant</figcaption></figure></li>
-      <li><figure><img src="assets/c-la-rufina.jpg" alt="" loading="lazy"><figcaption>La Rufina</figcaption></figure></li>
-      <li><figure><img src="assets/c-sambombi.jpg" alt="" loading="lazy"><figcaption>Sambombi Bistro</figcaption></figure></li>
-    </ul>
+  <section class="drawer-item" data-panel="contact" style="--i:2">
+    <button type="button" class="drawer-trigger" aria-expanded="false">Contact</button>
+    <div class="drawer-panel">
+      <div class="contact">
+        <p>For inquiries:<br><a href="mailto:carlos@lowpitchorchestra.com">carlos@lowpitchorchestra.com</a></p>
+        <p>Phone and WhatsApp:<br><a href="tel:+573183138797">+57 318 313 8797</a></p>
+        <p>Instagram:<br><a href="https://www.instagram.com/lposound" target="_blank" rel="noopener">@lposound</a></p>
+        <p class="contact-note">Curated sound. Elevated atmosphere.</p>
+      </div>
+    </div>
   </section>
 
-</main>
-
-<footer class="foot">
-  <a href="mailto:carlos@lowpitchorchestra.com">carlos@lowpitchorchestra.com</a>
-  <a href="tel:+573183138797">+57 318 313 8797</a>
-  <a href="https://www.instagram.com/lposound" target="_blank" rel="noopener">@lposound</a>
-  <span class="foot-note">Low Pitch Orchestra</span>
-</footer>
-
-<nav class="tabs" aria-label="Sections">
-  <button type="button" class="tab is-on" data-panel="services" aria-pressed="true">Services</button>
-  <button type="button" class="tab" data-panel="clients" aria-pressed="false">Clients</button>
-  <button type="button" class="tab" data-panel="about" aria-pressed="false">About</button>
 </nav>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <script src="app.js" defer></script>
 </body>
