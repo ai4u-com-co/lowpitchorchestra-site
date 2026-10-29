@@ -89,32 +89,24 @@
   // ar = width / height; x is a fraction of the band, y a fraction of the free height
   const WORKS = [
     // far layer
-    { id: 'playlists', kind: 'service', src: 'assets/w-playlists.jpg', ar: 1.33, size: 'l',  layer: 0, x: .02, y: .04, caption: 's.playlists' },
-    { id: 'luxe',      kind: 'client',  src: 'assets/c-luxe.jpg',      ar: 1,    size: 's',  layer: 0, x: .21, y: .74, caption: 'Luxe Hotel' },
-    { id: 'tokyo',     kind: 'photo',   src: 'assets/ig-tokyo.jpg',    ar: .8,   size: 'm',  layer: 0, x: .30, y: .06, caption: 'Tokyo Music Bar, Mexico City' },
-    { id: 'station',   kind: 'client',  src: 'assets/c-station.jpg',   ar: .75,  size: 'm',  layer: 0, x: .46, y: .62, caption: 'Station Restaurant' },
-    { id: 'crowd',     kind: 'photo',   src: 'assets/ig-crowd.jpg',    ar: 1,    size: 'xs', layer: 0, x: .58, y: .10, caption: 'Click Clack Hotel, Bogotá' },
-    { id: 'about',     kind: 'about',   logo: true,                    ar: 1.55, size: 'm',  layer: 0, x: .66, y: .70, caption: 'about' },
-    { id: 'devocion',  kind: 'client',  src: 'assets/c-devocion.jpg',  ar: 1,    size: 'm',  layer: 0, x: .80, y: .06, caption: 'Devoción' },
-    { id: 'paradisco', kind: 'photo',   src: 'assets/ig-paradisco.jpg', ar: .8,  size: 's',  layer: 0, x: .93, y: .66, caption: 'Paradisco, bar de escucha' },
+    { id: 'playlists', kind: 'service', src: 'assets/w-playlists.jpg', ar: 1.33, size: 'l',  layer: 0, x: .02, y: .06, caption: 's.playlists' },
+    { id: 'tokyo',     kind: 'photo',   src: 'assets/ig-tokyo.jpg',    ar: .8,   size: 'm',  layer: 0, x: .30, y: .62, caption: 'Tokyo Music Bar, Mexico City' },
+    { id: 'crowd',     kind: 'photo',   src: 'assets/ig-crowd.jpg',    ar: 1,    size: 'xs', layer: 0, x: .50, y: .12, caption: 'Click Clack Hotel, Bogotá' },
+    { id: 'about',     kind: 'about',   logo: true,                    ar: 1.55, size: 'm',  layer: 0, x: .64, y: .70, caption: 'about' },
+    { id: 'paradisco', kind: 'photo',   src: 'assets/ig-paradisco.jpg', ar: .8,  size: 's',  layer: 0, x: .84, y: .08, caption: 'Paradisco, bar de escucha' },
     // middle layer
-    { id: 'sonic',     kind: 'service', src: 'assets/w-sonic.jpg',     ar: .75,  size: 'xl', layer: 1, x: .10, y: .12, caption: 's.sonic' },
-    { id: 'one-half',  kind: 'client',  src: 'assets/c-one-half.jpg',  ar: 1,    size: 'l',  layer: 1, x: .36, y: .42, caption: 'One Half' },
-    { id: 'atmosphere', kind: 'photo',  src: 'assets/ig-atmosphere.jpg', ar: 1,  size: 'l',  layer: 1, x: .52, y: .08, caption: 'Atmosphere, Medellín' },
-    { id: 'cafe-dragon', kind: 'client', src: 'assets/c-cafe-dragon.jpg', ar: 1, size: 'm',  layer: 1, x: .70, y: .64, caption: 'Café Dragón' },
-    { id: 'events',    kind: 'service', src: 'assets/w-events.jpg',    ar: .667, size: 'l',  layer: 1, x: .85, y: .18, caption: 's.events' },
-    { id: 'carnaval',  kind: 'photo',   src: 'assets/ig-carnaval.jpg', ar: .8,   size: 'm',  layer: 1, x: .96, y: .60, caption: 'Carnaval de Barranquilla' },
+    { id: 'sonic',     kind: 'service', src: 'assets/w-sonic.jpg',     ar: .75,  size: 'xl', layer: 1, x: .10, y: .14, caption: 's.sonic' },
+    { id: 'atmosphere', kind: 'photo',  src: 'assets/ig-atmosphere.jpg', ar: 1,  size: 'l',  layer: 1, x: .42, y: .40, caption: 'Atmosphere, Medellín' },
+    { id: 'events',    kind: 'service', src: 'assets/w-events.jpg',    ar: .667, size: 'l',  layer: 1, x: .72, y: .18, caption: 's.events' },
+    { id: 'carnaval',  kind: 'photo',   src: 'assets/ig-carnaval.jpg', ar: .8,   size: 'm',  layer: 1, x: .92, y: .58, caption: 'Carnaval de Barranquilla' },
     // near layer
-    { id: 'consult',   kind: 'service', src: 'assets/w-consult.jpg',   ar: .75,  size: 'xl', layer: 2, x: .26, y: .02, caption: 's.consult' },
-    { id: 'torrealta', kind: 'client',  src: 'assets/c-torrealta.jpg', ar: 1,    size: 'm',  layer: 2, x: .47, y: .28, caption: 'Torrealta' },
-    { id: 'boavista',  kind: 'photo',   src: 'assets/ig-boavista.jpg', ar: .8,   size: 'xl', layer: 2, x: .60, y: .14, caption: 'Boavista Social Club, Lisbon' },
-    { id: 'la-rufina', kind: 'client',  src: 'assets/c-la-rufina.jpg', ar: 1.71, size: 'm',  layer: 2, x: .77, y: .80, caption: 'La Rufina' },
-    { id: 'casa-ramal', kind: 'client', src: 'assets/c-casa-ramal.jpg', ar: 1,   size: 's',  layer: 2, x: .05, y: .76, caption: 'Casa Ramal' },
-    { id: 'super-rayo', kind: 'photo',  src: 'assets/ig-super-rayo.jpg', ar: .8, size: 'l',  layer: 2, x: .88, y: .40, caption: 'Super Rayo' },
-    { id: 'supervision', kind: 'service', src: 'assets/w-supervision.jpg', ar: .75, size: 'm', layer: 2, x: .16, y: .46, caption: 's.supervision' },
-    { id: 'bambino',   kind: 'photo',   src: 'assets/ig-bambino.jpg',  ar: .8,   size: 'm',  layer: 2, x: .40, y: .70, caption: 'Bambino, Paris' },
-    { id: 'clickclack', kind: 'photo',  src: 'assets/ig-clickclack.jpg', ar: 1,  size: 's',  layer: 2, x: .72, y: .36, caption: 'Click Clack Hotel' },
-    { id: 'sambombi',  kind: 'client',  src: 'assets/c-sambombi.jpg',  ar: .73,  size: 'xs', layer: 2, x: .33, y: .86, caption: 'Sambombi Bistro' },
+    { id: 'consult',   kind: 'service', src: 'assets/w-consult.jpg',   ar: .75,  size: 'xl', layer: 2, x: .24, y: .04, caption: 's.consult' },
+    { id: 'boavista',  kind: 'photo',   src: 'assets/ig-boavista.jpg', ar: .8,   size: 'xl', layer: 2, x: .56, y: .20, caption: 'Boavista Social Club, Lisbon' },
+    { id: 'super-rayo', kind: 'photo',  src: 'assets/ig-super-rayo.jpg', ar: .8, size: 'l',  layer: 2, x: .82, y: .44, caption: 'Super Rayo' },
+    { id: 'supervision', kind: 'service', src: 'assets/w-supervision.jpg', ar: .75, size: 'm', layer: 2, x: .06, y: .60, caption: 's.supervision' },
+    { id: 'bambino',   kind: 'photo',   src: 'assets/ig-bambino.jpg',  ar: .8,   size: 'm',  layer: 2, x: .40, y: .74, caption: 'Bambino, Paris' },
+    { id: 'clickclack', kind: 'photo',  src: 'assets/ig-clickclack.jpg', ar: 1,  size: 's',  layer: 2, x: .70, y: .78, caption: 'Click Clack Hotel' },
+    { id: 'about-b',   kind: 'photo',   src: 'assets/w-about.jpg',     ar: .75,  size: 's',  layer: 2, x: .96, y: .10, caption: 'about' },
   ];
   const captionOf = w => (I18N.en[w.caption] ? t(w.caption) : w.caption);
 
@@ -122,7 +114,7 @@
   function metrics() {
     const w = window.innerWidth, h = field.clientHeight;
     FH = h;
-    TW = phone() ? Math.max(2000, w * 4.6) : Math.max(3200, w * 2.3);
+    TW = phone() ? Math.max(1600, w * 3.6) : Math.max(2600, w * 1.9);
     // the unit is a share of the free height, so the whole scale fits above the console on any screen
     const unit = h * (phone() ? 0.10 : 0.125);
     const out = {}; for (const k in SCALE) out[k] = Math.round(unit * SCALE[k]); return out;   // heights, px
